@@ -117,7 +117,7 @@ a:hover{
 }
 
 .detail-item-cart{
-    width: 300px;
+    width: 450px;
     height: auto;
     border-radius: 8px;
     margin-top: 50px;
@@ -135,8 +135,9 @@ a:hover{
     margin: 5px;
 }
 
+/* Item photo on the cart page */
 .item-photo-cart{
-    width: 300px;
+    width: 200px;
     height: auto;
     box-sizing: border-box;
     border: 3px solid black;
@@ -154,7 +155,7 @@ nav{
     display: block;
 }
 
-
+/* Products and Cart buttons */
 nav a{
     padding: 5px;
     justify-content: space-around;
@@ -183,6 +184,7 @@ h3{
     justify-content: center;
 }
 
+/* styling buttons */
 button{
     background-color: yellow;
     border: 3px solid black;
@@ -195,13 +197,26 @@ button{
     cursor: pointer;     
 } 
 
+/* dropdown menu */
 select{
     padding: 10px;
     border: 3px solid black;
     font-size: 16px;
 }
 
+/* Add to cart button and price */
 .add-to-cart{
     display: flex;
     align-items: center;
+}
+
+.remove-btn{
+    text-decoration: underline;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px;
+}
+
+p{
+    padding: 2px;
 }
