@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title>Bun Bun Bake Shop</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <!-- Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+  <body>
+    <header>
+      <a href="./index.html"><img src="logo/logo-01.svg" alt="Bun Bun Bake Shop" class="logo"></a>
+    </header>
+
+    <hr></hr>
+
+    <!-- Nav Buttons -->
+    <nav>
+      <p><a class="nav-btn" href="index.html">PRODUCTS</a></p>
+      <p><a href="./cart.html">CART</a></p>
+     </nav>
+
+
+    <h1>Original Cinnamon Roll</h1>
+
+    <div>
+      <div class="detail-item"> 
+        <img src="products/original-cinnamon-roll.jpg" alt="Original Cinnamon Roll" class="item-photo">
+      </div>
+
+
+    <!-- Make width under image smaller -->
+    <div class="small-width">
+      <div> 
+        <p> Customize our delicious, hand-made cinnamon roll to your liking!</p>
+      </div>
+
+      <br></br>
+
+    
+      <!-- Glazing dropdown -->
+      <div class="dropdown-menu"> 
+        <p>Glazing:</p>
+        <select name="glaze" id="glaze">
+          <option value="keep-original">Keep Original</option>
+          <option value="sugar-milk">Sugar Milk</option>
+          <option value="vanilla-milk">Vanilla Milk</option>
+          <option value="double-chocolate">double-chocolate</option>
+        </select>
+      </div>
+
+      <br></br>
+
+      <!-- Quantity dropdown -->
+      <div class="dropdown-menu"> 
+        <p>Pack Size</p>
+        <select name="size" id="size">
+          <option value="1">1</option>
+          <option value="3">3</option>
+          <option value="6">6</option>
+          <option value="12">12</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="add-to-cart">
+        <span><h3>$2.49</h3></span>
+        <span><button type="button"><a href="./cart.html"> Add to Cart </button></span>
+      </div>
+    </div>
+    </div>
+
+  </body>
+</html>
