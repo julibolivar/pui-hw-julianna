@@ -52,14 +52,12 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-header{
-    text-align: left;
-}
 
 .logo{
     width: 400px;
     height:auto;
     padding: 30px;
+    text-align: left;
 }
 
 hr{
@@ -83,11 +81,9 @@ a:hover{
     width: 450px;
     height: auto;
     border-radius: 8px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px;
     box-sizing: border-box;
+    display: inline-block;
 }
 
 .item:hover{
@@ -150,25 +146,21 @@ a:hover{
 }
 
 nav{
-    padding: 0px 50px 50px 50px;
-    /* display: inline-block; */
     display: flex;
-    justify-content: flex-end;
-    text-align: right;
+    width: 100%;
 }
 
 /* Products and Cart buttons */
 nav a{
-    padding: 10px;
-    margin: 20px;
-    display: flex;
-    justify-content: flex-end;
+    padding: 5px;
+    margin: 10px;
     text-align: right;
 }
 
 h1{
     font-size: 36px;
-    text-align: center;
+    text-align: left;
+    padding: 20px;
 }
 
 h3{
@@ -223,3 +215,39 @@ select{
 p{
     padding: 2px;
 }
+
+.home-items{
+    padding: 10%;
+}
+
+div{
+    background-color: rgb(255, 0, 0, .3);
+}
+
+.col1{
+    width: 100%;
+}
+
+.col2{
+    margin: 20px;
+}
+
+.wrapper{
+    display: inline-block;
+    width: 200%;
+    padding: 20px;
+    margin: 20px;
+}
+
+.second-wrapper{
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+}
+
+div.col2{
+    justify-content: end;
+    text-align: right;
+}
+
+
