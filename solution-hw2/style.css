@@ -269,7 +269,7 @@ p{
     margin: 20px;
 }
 
-
+/* wrapper for flex on cart and home */
 .detail-wrapper{
     /* display: flex; */
     flex-wrap: wrap;
@@ -277,6 +277,16 @@ p{
     justify-content: center;
     align-items: center;
 }
+
+/* wrapper on detail page */
+.detail-wrapper-original-bun{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .second-wrapper{
     display: flex;
