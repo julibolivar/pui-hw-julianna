@@ -24,7 +24,7 @@ let glazeOptions = [
     },
     {
         packSize: '3',
-        priceMultiply: 2
+        priceMultiply: 3
     },
     {
         packSize: '6',
@@ -74,10 +74,17 @@ function onChange(){
     let glazingPrice = parseFloat(glazeOptions[selectedGlazingIndex].priceAdd);
     let packPrice = parseInt(packSizes[selectedPackIndex].priceMultiply);
     let finalPrice = (2.49 + glazingPrice) * packPrice;
-    basePriceElement.innerText = finalPrice.toFixed(2);
+    basePriceElement.innerText = ("$" + finalPrice.toFixed(2));
+    // basePriceElement.innerText = ("$ ${finalPrice.toFixed(2)}");
   }
 
 onChange();
 
 selectElement.addEventListener('change', onChange);
 selectElement2.addEventListener('change', onChange);
+
+
+
+// HOMEWORK 4
+
+
