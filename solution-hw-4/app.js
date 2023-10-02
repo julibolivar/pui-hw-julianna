@@ -19,16 +19,16 @@ detailPrice.innerHTML = "$" + rolls[rollType].basePrice;
 class Roll {
     constructor(rollType, rollGlazing, packSize, basePrice) {
         this.type = rollType;
-        this.glaze =  rollGlazing;
-        this.packSize = packSize;
+        this.glazing =  rollGlazing;
+        this.size = packSize;
         this.basePrice = basePrice;
     }
 }
 
+
 function cartAdd() {
-    console.log("updating cart!");
-    let cartRoll = new Roll(rollType, rollGlazing, packSize, basePrice);
-    cart.push(cartRoll);
+    cartItem = new Roll(rollType, glazeOptions[selectedGlazingIndex],packSizes[selectedPackIndex], basePrice);
+    cart.push(cartItem);
     console.log(cart);
 }
 
