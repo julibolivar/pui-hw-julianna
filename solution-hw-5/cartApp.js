@@ -1,6 +1,6 @@
 let glazeOptions = [
     {
-        glaze: 'Keep Original',
+        glaze: 'Original',
         priceAdd: 0
     },
     {
@@ -36,11 +36,13 @@ let glazeOptions = [
     }
   ];
   
-cart = [];
-
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 const rollType = params.get('roll');
+
+//class ---------------------------------------------------------------
+let glazingPrice = 0;
+let packPrice = 1;
 
 class Roll {
     constructor(rollType, rollGlazing, packSize, basePrice) {
@@ -48,8 +50,39 @@ class Roll {
         this.glazing =  rollGlazing;
         this.size = packSize;
         this.basePrice = basePrice;
+        this.calculatedPrice = parseFloat(this.calcPrice(basePrice).toFixed(2));
+        // console.log("calculated price" + this.calculatedPrice);
+
+        this.element = null;
     }
+
+    calcPrice() {
+      for (let i = 0; i < glazeOptions.length; i++) {
+          if (glazeOptions[i].glaze.toLowerCase() === this.glazing.toLowerCase()) {
+              glazingPrice = glazeOptions[i].priceAdd;
+              break; // exit the loop once the match is found
+          }
+      }
+  
+      for (let i = 0; i < packSizes.length; i++) {
+          if (packSizes[i].packSize == this.size) {
+              packPrice = packSizes[i].priceMultiply;
+              break; // exit the loop once the match is found
+          }
+      }
+  
+      let finalPrice = (this.basePrice + glazingPrice) * packPrice;
+      console.log("glaze", glazingPrice)
+  
+      return finalPrice;
+  }
+  
+  
+
 }
+
+
+//set ---------------------------------------------------------------
 
 
 const cartSet = new Set();
@@ -59,7 +92,9 @@ cartSet.add(new Roll ("Walnut", "Vanilla milk", 12, 3.49));
 cartSet.add(new Roll ("Raisin", "Sugar milk", 3, 2.99));
 cartSet.add(new Roll ("Apple", "Keep original", 3, 3.49));
 
-console.log(cartSet);
+// console.log(cartSet);
+
+//add, create, update ---------------------------------------------------------------
 
 // this function creates a new cartItem object, and adds it to cartSet.
 function addNewRoll(rollType, rollGlazing, packSize, basePrice) {
@@ -78,13 +113,13 @@ function createElement(cartItem) {
     cartItem.element = clone.querySelector('.cart-item');
     
     const btnDelete = cartItem.element.querySelector('.remove-btn');
-    console.log(btnDelete);
+    // console.log(btnDelete);
     btnDelete.addEventListener('click', () => {
       deleteRoll(cartItem);
     });
     
-    // add the notecard clone to the DOM
-    // find the notecard parent (#notecard-list) and add our notecard as its child
+    // add the clone to the DOM
+    // find the parent and add as its child
     const cartListElement = document.querySelector('.cart-columns');
     cartListElement.prepend(cartItem.element);
     
@@ -99,15 +134,15 @@ function createElement(cartItem) {
     const cartGlazingElement = cartItem.element.querySelector('.cart-item-glaze'); 
     const cartPackElement = cartItem.element.querySelector('.cart-item-size'); 
     const cartPriceElement = cartItem.element.querySelector('.cart-item-price');
-
-    const calcPrice = calculatePrice(cartItem);
-
+    const cartTotalPrice = document.querySelector('#cart-calc-price');
+   
     // duplicates the cart content to the corresponding html elements
     cartImageElement.src = './assets/' + rolls[cartItem.type].imageFile;
     cartNameElement.innerText = cartItem.type + " Cinnamon Roll";
     cartGlazingElement.innerText = 'Glazing: ' + cartItem.glazing;
     cartPackElement.innerText = 'Pack Size: ' + cartItem.size;
-    cartPriceElement.innerText = '$ ' + calcPrice;
+    cartPriceElement.innerText = '$ ' + cartItem.calculatedPrice.toFixed(2);;
+    cartTotalPrice.innerText = cartTotal();
   }
 
 // delete --------------------------------------------------------------------------------
@@ -115,46 +150,33 @@ function createElement(cartItem) {
 function deleteRoll(cartItem) {
     cartItem.element.remove();
     cartSet.delete(cartItem);
-    updatePrice(); // update the total price after removing an item
+    
+    const cartTotalElement = document.querySelector('#cart-calc-price');
+    
+    let currentTotalPrice = parseFloat(cartTotalElement.innerText.replace('$', '')); //numeric value
+    let newTotalPrice = currentTotalPrice - cartItem.calculatedPrice;
+
+    cartTotalElement.innerText = "$" + parseFloat(newTotalPrice.toFixed(2));
   }
 
-  //price --------------------------------------------------------------------------------
-
-  function updatePrice() {
-    const calcPrice = document.querySelector('#cart-calc-price'); 
-    let sum = 0;
-    for (let item of cartSet) { 
-        sum += calculatePrice(item); //define a calculatePrice function
-    }
-    calcPrice.innerText = "$" + sum.toFixed(2);
-}
-
-  function calculatePrice(cartItem){
-    // let glazingChange = 0;
-    // for(const glazing of glazeOptions) {
-    //     if(glazing.packSize == cartItem.glazing) {
-    //         glazingChange = glazing.price;
-    //     }
-    // }
-    // let packChange = 0;
-    // for(const item of allPackSize) {
-    //     if(item.packSize == cartItem.size) {
-    //         packChange = pack.priceMultiply;
-    //     }
-    // }
-
-    // // calculates price based up glaze + pack size changes
-    // let calculatedPrice = (roll.basePrice + glazingChange) * packChange;
-
-    // return calculatedPrice.toFixed(2);
-    console.log("");
-    }
 
 //update --------------------------------------------------------------------------------
 
 for (const cartItem of cartSet) {
     console.log(cartItem);
     createElement(cartItem);
+
+    const cartTotalElement = document.querySelector('#cart-calc-price');
+    cartTotalElement.innerText = "$" + cartTotal();
   }
 
+  function cartTotal() {
+    let total = 0.00;
+    
+    for (const cartItem of cartSet) {
+      total += cartItem.calculatedPrice;
+    }
 
+    // console.log("total" + total);    
+    return total;
+  }
