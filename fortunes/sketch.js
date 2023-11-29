@@ -1,11 +1,5 @@
 let cookieClicked = false;
 
-var font;
-
-function preload() {
-  font = loadFont('Redaction100-Regular.otf');
-}
-
 function setup() {
     createCanvas(600, 600);
     // textFont('Courier New');
@@ -21,7 +15,6 @@ function draw() {
     arc(450, 300, 100, 100, 20, QUARTER_PI, PIE);
 
     fill(0);
-    
     textSize(20);
     text("Choose a fortune cookie!", 195, 500);
 }
