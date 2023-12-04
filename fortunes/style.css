@@ -1,15 +1,24 @@
 html, body {
-    height: 100%;
-  }
-  
-  body {
-    margin: 0;
-    display: flex;
-  
-    /* This centers our sketch horizontally. */
-    justify-content: center;
-  
-    /* This centers our sketch vertically. */
-    align-items: center;
-    font-family: 'Pixelify Sans', sans-serif;
-  }
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-size: 14px;
+  border: none;
+  padding: 10px;
+  color: white;
+  background: black;
+  font-family: 'Pokemon Classic', sans-serif; 
+}
+
+button:hover {
+  color: black;
+  background: white;
+}
