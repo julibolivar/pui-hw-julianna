@@ -41,72 +41,75 @@ let fortunes = [
     "You will be okay.", 
     "Good things are being said about you.", 
     "You have exciting travels in your future.", 
-    "It's okay to be basic."
+    "It's okay to be basic.",
+    "Be true to yourself.",
+    "Binge-watching Netflix is okay.",
+    "Practice daily self-affirmations.",
+    "Drink more water.",
+    "Stay in touch with your friends.",
+    "Don't drunk text your ex.",
+    "Make good choices."
   ];
-
+  
   let choice = 0;
   let displayFortune;
   
   let cookieClicked = false;
   let drawRotatingArcs = true;
   let drawChooseText = true;
-
   
   function preload() {
     font = loadFont('assets/Pokemon Classic.ttf');
   }
   
   function setup() {
-    createCanvas(600, 600);
+    createCanvas(600, 600).parent('container');
     displayFortune = fortuneGen();
     frameRate(20);
-}
-
-function resetSketch() {
+  }
+  
+  function resetSketch() {
     location.reload();
-}
-
-    //-----------------------draw()---------------------------------
+  }
+  
+  //-----------------------draw()---------------------------------
   
   function draw() {
     fill(250, 215, 160);
   
     if (drawRotatingArcs) {
       background(45, 45, 155);
-
+  
       push();
       translate(150, 300);
       rotate(frameCount / 50.0);
       ellipseMode(CENTER);
       arc(0, 0, 100, 100, 0, PI + QUARTER_PI, PIE);
       pop();
-
+  
       push();
       translate(300, 300);
       rotate(frameCount / 50.0);
       ellipseMode(CENTER);
       arc(0, 0, 100, 100, -20, PI + QUARTER_PI, PIE);
       pop();
-
+  
       push();
       translate(450, 300);
       rotate(frameCount / 50.0);
       ellipseMode(CENTER);
       arc(0, 0, 100, 100, 20, QUARTER_PI, PIE);
       pop();
-
     }
   
     if (drawChooseText) {
-        fill(255);
-        textSize(20);
-        textFont(font);
-        text('Choose a fortune cookie!', 100, 150);
-      }
-
+      fill(255);
+      textSize(20);
+      textFont(font);
+      text('Choose a fortune cookie!', 100, 150);
+    }
   }
-
-
+  
   //-----------------------mouseClicked()---------------------------------
   
   function mouseClicked() {
@@ -121,16 +124,15 @@ function resetSketch() {
         // cookie3
         displayCookie(2);
       }
-      cookieClicked = true; // set to true after clicking
-      drawRotatingArcs = false; // stop drawing rotating arcs after clicking
-      drawChooseText = false; // hide the "Choose a fortune cookie!" text after clicking
+      cookieClicked = true;
+      drawRotatingArcs = false;
+      drawChooseText = false;
     }
   }
   
-
-//-----------------------cookie pages---------------------------------
-
-function displayCookie(index) {
+  //-----------------------cookie pages---------------------------------
+  
+  function displayCookie(index) {
     push();
     background(45, 45, 155);
     fill(250, 215, 160);
@@ -145,34 +147,36 @@ function displayCookie(index) {
         arc(300, 300, 200, 200, 20, QUARTER_PI, PIE);
         break;
     }
-    
+  
     fill(255);
     stroke(51);
     rect(125, 472, 350, 50); //paper
-
+  
     fill(255);
     textSize(20);
     textFont(font);
-    text('Your fortune says...', 140, 150); //instructions text
- 
-    
+    text('Your fortune says...', 140, 150); //txt
+  
     fill(0);
     textSize(12);
     textFont('Courier New');
     textAlign(CENTER);
-    text(displayFortune, width / 2, 500);
+    text(displayFortune, width / 2, 500); //fortune txt
+  
     
     let resetButton = createButton("Reset");
-    resetButton.position(700, height - 425); // Adjust the position as needed
+    resetButton.parent("container"); //div for button
+    resetButton.position(25, 25, 'relative'); //constrain button to sketch
     resetButton.mousePressed(resetSketch);
   
     pop();
   }
-
-//-----------------------fortuness---------------------------------
-
+  
+  //-----------------------fortunes function---------------------------------
+  
   function fortuneGen() {
     choice = floor(random(0, 43));
     return fortunes[choice];
   }
+
   

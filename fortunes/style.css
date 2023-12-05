@@ -16,9 +16,20 @@ button {
   color: white;
   background: black;
   font-family: 'Pokemon Classic', sans-serif; 
+  position: static;
 }
 
 button:hover {
   color: black;
   background: white;
+}
+
+#container{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600;
+  height: 600;
+  position: relative;
 }
